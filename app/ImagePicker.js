@@ -52,8 +52,6 @@ const ImagePicker = () => {
                 { compress: 1, format: SaveFormat.JPEG }
             )
 
-            console.log('manipResult', manipResult)
-
             setImage(manipResult);
         }
     }
