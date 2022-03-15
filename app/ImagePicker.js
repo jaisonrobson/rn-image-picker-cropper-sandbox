@@ -1,6 +1,7 @@
 import { React, useState } from 'react'
-import { View, Text, Button, Image } from 'react-native'
+import { View, Button, Image } from 'react-native'
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
+import { manipulateAsync, FlipType, SaveFormat } from 'expo-image-manipulator';
 
 const ImagePicker = () => {
     const [image, setImage] = useState({ uri: '' })
@@ -34,26 +35,58 @@ const ImagePicker = () => {
         }
     }
 
+    const cropImage = async () => {
+        if (image.uri !== '') {
+            const manipResult = await manipulateAsync(
+                image.uri,
+                [
+                    {
+                        crop: {
+                            height: image.height - 250,
+                            width: image.width - 250,
+                            originX: 100,
+                            originY: 100
+                        }
+                    },
+                ],
+                { compress: 1, format: SaveFormat.JPEG }
+            )
+
+            console.log('manipResult', manipResult)
+
+            setImage(manipResult);
+        }
+    }
+
     return (
         <View>
             <Button
                 onPress={takePhoto}
                 title="Take Photo"
                 color="#841584"
-                accessibilityLabel="Learn more about this button"
             />
 
             <Button
                 onPress={selectFromGallery}
                 title="Select from gallery"
                 color="#841584"
-                accessibilityLabel="Learn more about this button"
             />
+            {
+                image.uri !== '' ? (
+                    <>
+                        <Image
+                            style={{ width: 500, height: 500 }}
+                            source={{ uri: image.uri }}
+                        />
 
-            <Image
-                style={{ width: 100, height: 100 }}
-                source={{ uri: image.uri }}
-            />
+                        <Button
+                            onPress={cropImage}
+                            title="Crop image"
+                            color="#841584"
+                        />
+                    </>
+                ) : undefined
+            }
         </View>
     )
 }
