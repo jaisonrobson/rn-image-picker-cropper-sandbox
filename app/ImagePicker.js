@@ -1,10 +1,13 @@
 import { React, useState } from 'react'
 import { View, Button, Image } from 'react-native'
-import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
-import { manipulateAsync, FlipType, SaveFormat } from 'expo-image-manipulator';
+import { launchCamera, launchImageLibrary } from 'react-native-image-picker'
+import { manipulateAsync, SaveFormat } from 'expo-image-manipulator'
+
+import ImageCropper from './ImageCropper'
 
 const ImagePicker = () => {
     const [image, setImage] = useState({ uri: '' })
+    const [isCropping, setIsCropping] = useState(false)
 
     const takePhoto = async () => {
         const options = {
@@ -56,7 +59,19 @@ const ImagePicker = () => {
         }
     }
 
-    return (
+    const onSuccessfulCrop = (image) => {
+        setImage(image)
+
+        setIsCropping(false)
+    }
+
+    return isCropping ? (
+        <ImageCropper
+            image={image}
+            onSaveCropping={onSuccessfulCrop}
+            onCancelCropping={() => setIsCropping(false)}
+        />
+    ) : (
         <View>
             <Button
                 onPress={takePhoto}
@@ -69,16 +84,17 @@ const ImagePicker = () => {
                 title="Select from gallery"
                 color="#841584"
             />
+
             {
                 image.uri !== '' ? (
                     <>
                         <Image
-                            style={{ width: 500, height: 500 }}
+                            style={{ width: 500, height: 500, resizeMode: 'cover' }}
                             source={{ uri: image.uri }}
                         />
 
                         <Button
-                            onPress={cropImage}
+                            onPress={() => setIsCropping(true)}
                             title="Crop image"
                             color="#841584"
                         />
