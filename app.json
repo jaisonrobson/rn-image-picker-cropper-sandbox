@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "rn-image-picker-cropper-sandbox",
+    "slug": "rn-image-picker-cropper-sandbox",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "rn-image-picker-cropper-sandbox"
+}
