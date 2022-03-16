@@ -5,6 +5,7 @@ import { manipulateAsync, SaveFormat } from 'expo-image-manipulator'
 
 import ImageCropper from './ImageCropper'
 import AvatarImageCropper from './AvatarImageCropper'
+import InstagramImageCropper from './InstagramImageCropper'
 
 const ImagePicker = () => {
     const [image, setImage] = useState({ uri: '' })
@@ -72,7 +73,11 @@ const ImagePicker = () => {
         //     onSaveCropping={onSuccessfulCrop}
         //     onCancelCropping={() => setIsCropping(false)}
         // />
-        <AvatarImageCropper
+        // <AvatarImageCropper
+        //     image={image}
+        //     onSuccessfulCrop={onSuccessfulCrop}
+        // />
+        <InstagramImageCropper
             image={image}
             onSuccessfulCrop={onSuccessfulCrop}
         />

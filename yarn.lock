@@ -4660,7 +4660,7 @@
   "resolved" "https://registry.npmjs.org/react-native-instagram-like-image-cropper/-/react-native-instagram-like-image-cropper-1.0.6.tgz"
   "version" "1.0.6"
 
-"react-native-reanimated@2.2.4":
+"react-native-reanimated@^2.2.4", "react-native-reanimated@2.2.4":
   "integrity" "sha512-Nn648MfEEnTCEiWsl1YmfkojiLyV0NMY0EiRdDRbZNfJVfxBuyqhCxI/4Jd7aBi162qpgf8XK2mByYgvF4zLrQ=="
   "resolved" "https://registry.npmjs.org/react-native-reanimated/-/react-native-reanimated-2.2.4.tgz"
   "version" "2.2.4"
