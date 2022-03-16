@@ -1,11 +1,11 @@
 import { View } from 'react-native'
 
-import ImagePicker from './ImagePicker'
+import ImagePickerEditor from './ImagePickerEditor'
 
 const Main = () => {
     return (
         <View>
-            <ImagePicker />
+            <ImagePickerEditor />
 
         </View>
     )

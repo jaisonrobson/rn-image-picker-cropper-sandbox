@@ -1,11 +1,10 @@
 import { React, useState } from 'react'
 import { View, Button, Image } from 'react-native'
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker'
-import { manipulateAsync, SaveFormat } from 'expo-image-manipulator'
 
 import ImageCropper from './ImageCropper'
 
-const ImagePicker = () => {
+const ImagePickerEditor = () => {
     const [image, setImage] = useState({ uri: '' })
     const [isCropping, setIsCropping] = useState(false)
 
@@ -39,27 +38,6 @@ const ImagePicker = () => {
             setImage(result.assets[0])
 
             setIsCropping(true)
-        }
-    }
-
-    const cropImage = async () => {
-        if (image.uri !== '') {
-            const manipResult = await manipulateAsync(
-                image.uri,
-                [
-                    {
-                        crop: {
-                            height: image.height - 250,
-                            width: image.width - 250,
-                            originX: 100,
-                            originY: 100
-                        }
-                    },
-                ],
-                { compress: 1, format: SaveFormat.JPEG }
-            )
-
-            setImage(manipResult);
         }
     }
 
@@ -101,4 +79,4 @@ const ImagePicker = () => {
     )
 }
 
-export default ImagePicker
+export default ImagePickerEditor
