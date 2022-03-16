@@ -4,6 +4,7 @@ import { launchCamera, launchImageLibrary } from 'react-native-image-picker'
 import { manipulateAsync, SaveFormat } from 'expo-image-manipulator'
 
 import ImageCropper from './ImageCropper'
+import AvatarImageCropper from './AvatarImageCropper'
 
 const ImagePicker = () => {
     const [image, setImage] = useState({ uri: '' })
@@ -66,10 +67,14 @@ const ImagePicker = () => {
     }
 
     return isCropping ? (
-        <ImageCropper
+        // <ImageCropper
+        //     image={image}
+        //     onSaveCropping={onSuccessfulCrop}
+        //     onCancelCropping={() => setIsCropping(false)}
+        // />
+        <AvatarImageCropper
             image={image}
-            onSaveCropping={onSuccessfulCrop}
-            onCancelCropping={() => setIsCropping(false)}
+            onSuccessfulCrop={onSuccessfulCrop}
         />
     ) : (
         <View>
